@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-function App() {
+import "./App.css";
+
+const App = ({ value }) => {
+  const [counter, setCounter] = useState(value);
+
+  const changeCounterState = () => {
+    setCounter(counter + 1)
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Super contador mamalon</h1>
+      <h1>{counter}</h1>
+      <div style={{ display: "flex" }}>
+        <button onClick={changeCounterState}>+1</button>
+      </div>
+    </>
   );
-}
+};
+
+// eslint-disable-next-line react/no-typos
+App.propTypes = {
+  value: PropTypes.number.isRequired,
+};
+
+App.defaultProps = {
+  value: 0,
+};
 
 export default App;
